@@ -1,0 +1,12 @@
+{% extends "customerservice/customerservice_base.html" %}
+
+{% block title %} Customer Service Logout {% endblock %}
+
+{% block content %}
+  {% if errors %}
+    {% for error in errors %}
+      <p> {{ error }} <p>
+    {% endfor %}
+  {% endif %}
+  <p> Thank your for using our software, live long and prosper </p>
+{% endblock %}
