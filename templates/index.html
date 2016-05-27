@@ -3,8 +3,8 @@
 
 {% block content %}
 
-  <button>Customer Service</button>
-  <button>Dispatcher</button>
-  <button>Technician</button>
+  <a href="{% url 'customer_service_login' %}"><button>Customer Service</button></a>
+  <a><button>Dispatcher</button></a>
+  <a><button>Technician</button></a>
 
 {% endblock %}

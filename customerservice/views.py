@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from customerservice.models import Customer
+from customerservice.models import Device
 
 from customerservice.forms import search_forms
 
@@ -33,8 +34,12 @@ def customer_service_search_by_phone(request):
             if form.is_valid():
                 form_cleaned_data = form.cleaned_data
                 try:
-                    customer = Customer.objects.get(land_phone_number__exact = form_cleaned_data['phone'])
-                    return HttpResponse("This is a valid customer")
+                    customer = Customer.objects.filter(land_phone_number__exact = form_cleaned_data['phone'])
+                    devices = Device.objects.filter(customer__land_phone_number = form_cleaned_data['phone'])
+                    template = 'customerservice/customerservice_customers.html'
+                    context = dict()
+                    context['customer_device'] = [(customer, devices)]
+                    return render(request, template, context)
                 except Customer.DoesNotExist:
                     return HttpResponse("Not found customer")
             else:
