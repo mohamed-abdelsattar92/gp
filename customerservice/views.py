@@ -34,7 +34,7 @@ def customer_service_search_by_phone(request):
             if form.is_valid():
                 form_cleaned_data = form.cleaned_data
                 try:
-                    customer = Customer.objects.filter(land_phone_number__exact = form_cleaned_data['phone'])
+                    customer = Customer.objects.get(land_phone_number__exact = form_cleaned_data['phone'])
                     devices = Device.objects.filter(customer__land_phone_number = form_cleaned_data['phone'])
                     template = 'customerservice/customerservice_customers.html'
                     context = dict()

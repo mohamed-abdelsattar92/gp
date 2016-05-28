@@ -11,10 +11,8 @@
   {% for cust_dev in customer_device %}
     <div class="row">
       <div class="col-lg-8">
-        <!-- use cust_dev.0.0 because it's a query set and i need to access the first element in it and the first element
-             in the list of tuples as well -->
-        <p> {{ cust_dev.0.0.first_name }} </p>
-        <p> {{ cust_dev.0.0.last_name }} </p>
+        <p> {{ cust_dev.0.first_name }} </p>
+        <p> {{ cust_dev.0.last_name }} </p>
       </div>
       <div class="col-lg-4">
         {% for device in cust_dev.1 %}
