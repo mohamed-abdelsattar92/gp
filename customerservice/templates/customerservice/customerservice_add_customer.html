@@ -1,0 +1,55 @@
+{% extends 'customerservice/customerservice_base.html' %}
+
+{% load staticfiles %}
+
+{% block title %} Add Customer {% endblock %}
+
+{% block content %}
+
+  <form action = "{% url 'customer_service_add_customer' %}" method = "post">
+    <div class="form-group">
+      {{ form.first_name.label_tag }}
+      {{ form.first_name }}
+    </div>
+    <div class="form-group">
+      {{ form.middle_name.label_tag }}
+      {{ form.middle_name }}
+    </div>
+    <div class="form-group">
+      {{ form.last_name.label_tag }}
+      {{ form.last_name }}
+    </div>
+    <div class="form-group">
+      {{ form.mobile_number.label_tag }}
+      {{ form.mobile_number }}
+    </div>
+    <div class="form-group">
+      {{ form.land_phone_number.label_tag }}
+      {{ form.land_phone_number }}
+    </div>
+    <div class="form-group">
+      {{ form.address_formated.label_tag }}
+      {{ form.address_formated }}
+    </div>
+    <div class="form-group">
+      {{ form.longitude.label_tag }}
+      {{ form.longitude }}
+    </div>
+    <div class="form-group">
+      {{ form.latitude.label_tag }}
+      {{ form.latitude }}
+    </div>
+    <a id="reset" href="#" style="display:none;">Reset Marker</a>
+    <input type = "submit" value = "Add" />
+    {% csrf_token %}
+  </form>
+  <button id = "find">Find</button>
+  <div class="map_canvas"></div>
+
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDRQk3AK6FV-zyRKz1Tcn8ztOBADm16r9c&libraries=places"></script>
+<!-- <script src="{% static 'jquery.js' %}"></script> -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="{% static 'geocomplete/jquery.geocomplete.js' %}"></script>
+<script src="{% static 'customerservice/js/geocoding.js' %}"></script>
+
+{% endblock %}
