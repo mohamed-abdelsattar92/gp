@@ -8,18 +8,23 @@
 
 {% block content %}
 
-  {% for cust_dev in customer_device %}
+  {% for cust_devs in customer_devices %}
     <div class="row">
       <div class="col-lg-8">
-        <p> {{ cust_dev.0.first_name }} </p>
-        <p> {{ cust_dev.0.last_name }} </p>
+        <p> {{ cust_devs.0.first_name }} </p>
+        <p> {{ cust_devs.0.last_name }} </p>
       </div>
       <div class="col-lg-4">
-        {% for device in cust_dev.1 %}
+        {% for device in cust_devs.1 %}
           <p> {{ device.model_name }} </p>
           <p> {{ device.serial_number }} </p>
         {% endfor %}
-        <button> Add Device </button>
+        <!-- the whole purpose of this form to pass the customer_id to the view to handle adding the device to that specific customer -->
+        <form action="{% url 'customer_service_to_add_device' %}" method="post">
+          <input type="number" hidden="true" value= {{ cust_devs.0.pk }} name="customer_id">
+          <button type="submit"> Add Device </button>
+          {% csrf_token %}
+        </form>
       </div>
     </div>
   {% endfor %}
