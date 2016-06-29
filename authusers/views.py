@@ -27,10 +27,12 @@ def customer_service_login(request):
                 else:
                     errors.append("Wrong password for this user name")
                     context['errors'] = errors
+                    context['form'] = login_form    # to be able to hold the current form data
                     return render(request, template, context)
             except CustomerServiceUser.DoesNotExist:
                 errors.append("This user name doesn't exist")
                 context['errors'] = errors
+                context['form'] = login_form     # to be able to hold the current form data
                 return render(request, template, context)
         else:
             # need to do something else rather than just returning an HttpResponse object
