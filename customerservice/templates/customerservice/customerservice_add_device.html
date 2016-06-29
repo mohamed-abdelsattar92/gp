@@ -1,0 +1,14 @@
+{% extends 'customerservice/customerservice_base.html' %}
+
+{% block title %} Add Device {% endblock %}
+
+{% block content %}
+
+  <form action = "{% url 'customer_service_add_device' %}" method = "post">
+    {{ form.as_table }}
+    <input type = "submit" value = "Add" />
+    {% csrf_token %}
+  </form>
+
+
+{% endblock %}
