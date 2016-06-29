@@ -12,4 +12,10 @@ urlpatterns = [
         name = "customer_service_search_by_name"),
     url(r'^search/phone$', customerservice_views.customer_service_search_by_phone, \
         name = "customer_service_search_by_phone"),
+    url(r'^to-add-device/$', customerservice_views.customer_service_to_add_device, \
+        name = "customer_service_to_add_device"),
+    url(r'^add-device/$', customerservice_views.customer_service_add_device,\
+        name = "customer_service_add_device"),
+    url(r'^add-customer/$', customerservice_views.customer_service_add_customer,\
+        name = "customer_service_add_customer"),
 ]

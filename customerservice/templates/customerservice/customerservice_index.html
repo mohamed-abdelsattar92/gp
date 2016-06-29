@@ -15,8 +15,16 @@
 
   <form action = "{% url 'customer_service_search_by_name' %}" method = "post">
     <div class="form-group">
-      {{ name_form.name.label_tag }}
-      {{ name_form.name }}
+      {{ name_form.first_name.label_tag }}
+      {{ name_form.first_name }}
+    </div>
+    <div class="form-group">
+      {{ name_form.middle_name.label_tag }}
+      {{ name_form.middle_name }}
+    </div>
+    <div class="form-group">
+      {{ name_form.last_name.label_tag }}
+      {{ name_form.last_name }}
     </div>
     <input type = "submit" value = "Search" />
     {% csrf_token %}
@@ -31,6 +39,6 @@
     {% csrf_token %}
   </form>
 
-  <button name = "add_customer" > Add Customer </button>
+  <a href="{% url 'customer_service_add_customer' %}"><button name = "add_customer" > Add Customer </button></a>
 
 {% endblock %}

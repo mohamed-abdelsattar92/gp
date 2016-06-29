@@ -3,8 +3,12 @@ from django.core.validators import RegexValidator
 
 
 class SearchByNameForm(forms.Form):
-    name = forms.CharField(max_length = 120, \
-        widget = forms.TextInput(attrs = {'required' : 'true', 'placeholder' : 'Customer Name', 'class' :'form-control'}))
+    first_name = forms.CharField(max_length = 120, \
+        widget = forms.TextInput(attrs = {'required' : 'true', 'placeholder' : 'Customer First Name', 'class' :'form-control'}))
+    middle_name = forms.CharField(max_length = 120, \
+        widget = forms.TextInput(attrs = {'required' : 'true', 'placeholder' : 'Customer Middle Name', 'class' :'form-control'}))
+    last_name = forms.CharField(max_length = 120, \
+        widget = forms.TextInput(attrs = {'required' : 'true', 'placeholder' : 'Customer Last Name', 'class' :'form-control'}))
 
 
 class SearchByPhoneForm(forms.Form):
