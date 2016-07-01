@@ -18,6 +18,12 @@
         {% for device in cust_devs.1 %}
           <p> {{ device.model_name }} </p>
           <p> {{ device.serial_number }} </p>
+          <!-- the whole purpose of this form is to pass the device_id to the view to handel adding tickets to that device -->
+          <form action="{% url 'customer_service_to_add_ticket' %}" method="post">
+            <input type="number", hidden="true" value= {{ device.pk }} name="device_id">
+            <button type="submit">Add Problem </button>
+            {% csrf_token %}
+          </form>
         {% endfor %}
         <!-- the whole purpose of this form to pass the customer_id to the view to handle adding the device to that specific customer -->
         <form action="{% url 'customer_service_to_add_device' %}" method="post">
