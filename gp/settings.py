@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'customerservice',
     'technician',
     'ticket',
+    'dispatcher',
 ]
 
 MIDDLEWARE_CLASSES = [

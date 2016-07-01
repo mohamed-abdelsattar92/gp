@@ -17,10 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from views import index_views
 from customerservice import urls as customerservice_urls
+from dispatcher import urls as dispatcher_urls
 
 
 urlpatterns = [
     url(r'^$', index_views.home, name = 'home'),
     url(r'^admin/', admin.site.urls),
     url(r'^customerservice/', include(customerservice_urls)),
+    url(r'^dispatcher/', include(dispatcher_urls)),
 ]

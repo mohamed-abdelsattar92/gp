@@ -1,0 +1,10 @@
+{% extends 'dispatcher/dispatcher_base.html' %}
+
+{% block title %} Dispatcher Home Page {% endblock %}
+
+{% block content %}
+
+  <p> {{ username }} </p>
+  <a href="{% url 'dispatcher_logout' %}"> logout </a>
+
+{% endblock %}
