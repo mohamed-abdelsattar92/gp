@@ -1,0 +1,18 @@
+{% extends 'dispatcher/dispatcher_base.html' %}
+{% block title %} Viewing Technicians {% endblock %}
+
+{% block content %}
+
+{% for tech in technicians_info %}
+
+  <p>{{ tech.0.first_name }} {{ tech.0.middle_name }} {{ tech.0.last_name }}</p>
+  <p> longitude = {{ tech.0.location_longitude }} </p>
+  <p> latitude = {{ tech.0.location_latitude }} </p>
+    {% for item in tech.1 %}
+      <p> {{ item.date_of_visit }}</p>
+      <p> {{ item.longitude }} </p>
+      <p> {{ item.latitude }} </p>
+    {% endfor %}
+{% endfor %}
+
+{% endblock %}

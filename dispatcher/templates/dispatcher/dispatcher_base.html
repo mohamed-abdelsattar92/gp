@@ -16,5 +16,9 @@
     {% block content %}{% endblock %}
   </div>
   <footer>{% block footer %}{% endblock %}</footer>
+  {% block scripts %}
+    <script src="{% static 'jquery.js' %}"></script>
+  {% endblock %}
+
 </body>
 </html>

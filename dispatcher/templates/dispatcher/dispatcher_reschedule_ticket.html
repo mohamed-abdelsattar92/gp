@@ -1,0 +1,11 @@
+{% extends 'dispatcher/dispatcher_base.html' %}
+{% block title %} Re-asign a job {% endblock %}
+
+{% block content %}
+
+  <form action="{% url 'dispatcher_reschedule_ticket' %}" method="post">
+    {{ form }}
+    <input type="submit" value="Reschedule" />
+    {% csrf_token %}
+  </form>
+{% endblock %}

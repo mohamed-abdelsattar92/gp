@@ -1,0 +1,88 @@
+{% extends 'dispatcher/dispatcher_base.html' %}
+{% block title %} View Tickets {% endblock %}
+
+{% block content %}
+
+  {% if opVal %}
+    {% for ticket in op %}
+      <p> {{ ticket.problem_title }} </p>
+      <p> {{ ticket.problem_description }} </p>
+      <p> {{ ticket.device_concerned }}</p>
+      <form action="{% url 'dispatcher_search_technician_by_skill' %}" method="post">
+        <input type="text" class="form-group" required="true" placeholder="Skill to Search" name="search_skill"/>
+        <input type="submit" value="Search" />
+        <input type="text" hidden="true" value="{{ ticket.pk }}" name="ticket_pk" />
+        {% csrf_token %}
+      </form>
+    {% endfor %}
+  {% endif %}
+
+  {% if  asVal %}
+    {% for ticket in as %}
+      <p> {{ ticket.technician_resposible }} </p>
+      <p> {{ ticket.problem_title }} </p>
+      <p> {{ ticket.problem_description }} </p>
+      <p> {{ ticket.device_concerned }}</p>
+      <h1> Re assign ticket </h1>
+      <form action="{% url 'dispatcher_search_technician_by_skill' %}" method="post">
+        <input type="text" class="form-group" required="true" placeholder="Skill to Search" name="search_skill"/>
+        <input type="submit" value="Reassign" />
+        <input type="text" hidden="true" value="{{ ticket.pk }}" name="ticket_pk" />
+        <input type="hidden" value="{{ ticket.technician_resposible.pk }}" name="tech_id" />
+        <input type="hidden" value="true" name="reassgin" />
+        {% csrf_token %}
+      </form>
+      <form action="{% url 'dispatcher_reschedule_ticket' %}" method="get">
+        <input type="submit"  value="Re-schedule" class="form-control btn btn-success"/>
+        <input type="hidden" value="{{ ticket.pk }}" name="ticket_pk" />
+        {% csrf_token %}
+      </form>
+    {% endfor %}
+  {% endif %}
+
+  {% if wpVal %}
+    {% for ticket in wp %}
+      <p> {{ ticket.technician_resposible }} </p>
+      <p> {{ ticket.problem_title }} </p>
+      <p> {{ ticket.problem_description }} </p>
+      <p> {{ ticket.device_concerned }}</p>
+      <!-- <form action="{% url 'dispatcher_search_technician_by_skill' %}" method="post">
+        <input type="text" class="form-group" required="true" placeholder="Skill to Search" name="search_skill"/>
+        <input type="submit" value="Search" />
+        <input type="text" hidden="true" value="{{ ticket.pk }}" name="ticket_pk" />
+        {% csrf_token %}
+      </form> -->
+    {% endfor %}
+  {% endif %}
+
+  {% if flVal  %}
+    {% for ticket in fl %}
+      <p> {{ ticket.technician_resposible }} </p>
+      <p> {{ ticket.problem_title }} </p>
+      <p> {{ ticket.problem_description }} </p>
+      <p> {{ ticket.device_concerned }}</p>
+      <!-- <form action="{% url 'dispatcher_search_technician_by_skill' %}" method="post">
+        <input type="text" class="form-group" required="true" placeholder="Skill to Search" name="search_skill"/>
+        <input type="submit" value="Search" />
+        <input type="text" hidden="true" value="{{ ticket.pk }}" name="ticket_pk" />
+        {% csrf_token %}
+      </form> -->
+      <h1> Re assign ticket </h1>
+      <form action="{% url 'dispatcher_search_technician_by_skill' %}" method="post">
+        <input type="text" class="form-group" required="true" placeholder="Skill to Search" name="search_skill"/>
+        <input type="submit" value="Reassign" />
+        <input type="text" hidden="true" value="{{ ticket.pk }}" name="ticket_pk" />
+        <input type="hidden" value="{{ ticket.technician_resposible.pk }}" name="tech_id" />
+        <input type="hidden" value="true" name="reassgin" />
+        {% csrf_token %}
+      </form>
+      <form action="{% url 'dispatcher_reschedule_ticket' %}" method="get">
+        <input type="submit"  value="Re-schedule" class="btn btn-success"/>
+        <input type="hidden" value="{{ ticket.pk }}" name="ticket_pk" />
+        {% csrf_token %}
+      </form>
+    {% endfor %}
+  {% endif %}
+
+
+{% endblock %}

@@ -7,4 +7,27 @@
   <p> {{ username }} </p>
   <a href="{% url 'dispatcher_logout' %}"> logout </a>
 
+  <form action="{% url 'dispatcher_view_tickets' %}" method="post">
+    {{ view_ticket_form}}
+    <input type="submit" value="View Tickets" />
+    {% csrf_token %}
+  </form>
+
+  <form action="{% url 'dispatcher_view_technicians_by_name' %}" method="post">
+    {{ view_tech_by_name }}
+    <input type="submit" value="View Technicians" />
+    {% csrf_token %}
+  </form>
+
+  <form action="{% url 'dispatcher_view_technicians_by_skill' %}" method="post">
+    {{ view_tech_by_skill }}
+    <input type="submit" value="View Technicians" />
+    {% csrf_token %}
+  </form>
+
+  <form action="{% url 'dispatcher_view_technicians_by_location' %}" method="post">
+    {{ view_tech_by_location.tech_longitude }}
+    <input type="submit" value="View Technicians" />
+    {% csrf_token %}
+  </form>
 {% endblock %}
