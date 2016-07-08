@@ -51,6 +51,8 @@ class Visit(models.Model):
     date_of_visit = models.DateTimeField()
     latitude = models.FloatField()
     longitude = models.FloatField()
+    start_time = models.TimeField(blank = True, null = True)
+    end_time = models.TimeField(blank = True, null = True)
     ticket_concerned = models.ForeignKey(Ticket, on_delete = models.CASCADE)
     technician_concerned = models.ForeignKey(Technician, on_delete = models.CASCADE, blank = True, null = True)
 
