@@ -18,6 +18,7 @@ from django.contrib import admin
 from views import index_views
 from customerservice import urls as customerservice_urls
 from dispatcher import urls as dispatcher_urls
+from technician.api import urls as api_urls
 
 
 urlpatterns = [
@@ -25,4 +26,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^customerservice/', include(customerservice_urls)),
     url(r'^dispatcher/', include(dispatcher_urls)),
+    url(r'^api/', include(api_urls)),
 ]
