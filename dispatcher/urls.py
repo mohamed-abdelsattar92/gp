@@ -17,8 +17,6 @@ urlpatterns = [
     url(r'^search-tech-skill/$', dispatcher_views.dispatcher_search_technician_by_skill,
         name = "dispatcher_search_technician_by_skill"),
     url(r'^assign-ticket$', dispatcher_views.dispatcher_assign_ticket, name = "dispatcher_assign_ticket"),
-    # url(r'^reassign-technician/$', dispatcher_views.dispatcher_reassign_technician,
-    #     name = "dispatcher_reassign_technician"),
     url(r'^reschedule-ticket$', dispatcher_views.dispatcher_reschedule_ticket,
         name = "dispatcher_reschedule_ticket")
 ]

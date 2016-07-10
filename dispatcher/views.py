@@ -221,38 +221,6 @@ def dispatcher_view_technicians_by_location(request):
     return HttpResponse("This is the view technician page")
 
 
-# def dispatcher_reassign_technician(request):
-#     dispatcher_user_id = request.session.get('dispatcher_user_id', None)
-#     dispatcher = request.session.get('dispatcher', None)
-#     if dispatcher_user_id and dispatcher:
-#         template = "dispatcher/dispatcher_reassign_technician.html"
-#         context = dict()
-#         if request.POST:
-#             tech_pk = request.POST['technician_pk']
-#             ticket_pk = request.POST['ticket_pk']
-#             # request.session['ticket_pk'] = ticket_pk
-#             # request.session['technician_pk'] = tech_pk
-#             form = re_forms.ReassignForm()
-#             context['form'] = form
-#             return render(request, template, context)
-#         else:
-#             return HttpResponse("not a post request")
-#
-#     else:
-#         response_redirect_url = reverse('dispatcher_login')
-#         return HttpResponseRedirect(response_redirect_url)
-
-
-# def dispatcher_reassign_ticket(request):
-#     dispatcher_user_id = request.session.get('dispatcher_user_id', None)
-#     dispatcher = request.session.get('dispatcher', None)
-#     if dispatcher_user_id and dispatcher:
-#         old_ticket = Ticket.objects.get(pk = request.session.get('ticket_id'))
-#         old_visit = Visit.objects.get(ticket_concerned = old_ticket)
-#         old_schedule_item = ScheduleItem.objects.get(visit_concerned = old_visit)
-#         old_visit.delete()
-#         old_schedule_item.delete()
-
 def dispatcher_reschedule_ticket(request):
     dispatcher_user_id = request.session.get('dispatcher_user_id', None)
     dispatcher = request.session.get('dispatcher', None)
