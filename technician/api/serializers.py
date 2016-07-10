@@ -20,12 +20,17 @@ class TechnicianLocationSerializer(serializers.ModelSerializer):
         fields = ['location_longitude', 'location_latitude']
 
 
-class TechnicianVisitsSerializer(serializers.Serializer):
+class TechnicianAllVisitsSerializer(serializers.Serializer):
     problem_description = serializers.CharField()
     longitude = serializers.FloatField()
     latitude = serializers.FloatField()
     date_of_visit = serializers.DateTimeField(read_only = True)
     ticket_id = serializers.IntegerField()
+    visit_status = serializers.CharField(max_length = 10)
+
+
+class TechnicianTodayVisitsSerializer(TechnicianAllVisitsSerializer):
+    visit_order = serializers.IntegerField()
 
 
 class TechnicianTicketSolution(serializers.Serializer):
