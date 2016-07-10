@@ -48,6 +48,10 @@ class TicketSolution(models.Model):
 
 
 class Visit(models.Model):
+    STATUS_CHOICES = (
+        ('W', 'Waiting'),
+        ('D', 'Done'),
+    )
     date_of_visit = models.DateTimeField()
     latitude = models.FloatField()
     longitude = models.FloatField()
@@ -55,6 +59,7 @@ class Visit(models.Model):
     end_time = models.TimeField(blank = True, null = True)
     ticket_concerned = models.ForeignKey(Ticket, on_delete = models.CASCADE)
     technician_concerned = models.ForeignKey(Technician, on_delete = models.CASCADE, blank = True, null = True)
+    status = models.CharField(max_length = 10, choices = STATUS_CHOICES, default = 'W')
 
     def __str__(self):
         return str(self.date_of_visit) + self.ticket_concerned.__str__()
