@@ -9,16 +9,20 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'jquery.js' %}"></script>
+{% endblock %}
 </head>
+
 <body>
   <header>{% block header %}{% endblock %}</header>
   <div class = "container-fluid">
     {% block content %}{% endblock %}
   </div>
   <footer>{% block footer %}{% endblock %}</footer>
-  {% block scripts %}
-    <script src="{% static 'jquery.js' %}"></script>
-  {% endblock %}
-
 </body>
 </html>

@@ -1,11 +1,46 @@
 {% extends 'dispatcher/dispatcher_base.html' %}
 {% block title %} Technicians to Assign jobs {% endblock %}
 
+{% block styles %}
+  <style>
+    .map{
+      width: 500px;
+      height: 500px;
+    }
+  </style>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0gXuiUMmrNaWI7_ytDjJlykM-uhny_QE">
+    </script>
+    <script>
+      var map;
+      function initMap(tech_id, latitude, longitude) {
+        console.log(tech_id)
+        console.log(latitude)
+        console.log(tech_id)
+        id = tech_id.toString() + '_tech_location_map'
+        print(id)
+        map = new google.maps.Map(document.getElementById(id), {
+          center: {lat: latitude, lng: longitude},
+          zoom: 15
+        });
+      }
+     </script>
+{% endblock %}
+
+
 {% block content %}
 
   {% for tech in technicians %}
 
     <p>{{ tech.0.first_name }} {{ tech.0.middle_name }} {{ tech.0.last_name }}</p>
+    <div id="{{ tech.0.pk }}_tech_location_map" class="map">
+      <script>
+        initMap({{ tech.0.pk }}, {{ tech.0.location_latitude }},{{ tech.0.location_longitude }})
+      </script>
+    </div>
     <p> longitude = {{ tech.0.location_longitude }} </p>
     <p> latitude = {{ tech.0.location_latitude }} </p>
       {% for item in tech.1 %}
