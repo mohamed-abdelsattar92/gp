@@ -13,11 +13,19 @@
       <div class="col-lg-8">
         <p> {{ cust_devs.0.first_name }} </p>
         <p> {{ cust_devs.0.last_name }} </p>
+        <form action="{% url 'customer_service_edit_customer' %}" method="get">
+          <input type="submit" value="Edit" />
+          <input type="hidden" value="{{ cust_devs.0.pk }}" name="customer_id" />
+        </form>
       </div>
       <div class="col-lg-4">
         {% for device in cust_devs.1 %}
           <p> {{ device.model_name }} </p>
           <p> {{ device.serial_number }} </p>
+          <form action="{% url 'customer_service_edit_device' %}" method="get">
+            <input type="submit" value="Edit" />
+            <input type="hidden" value="{{ device.pk }}" name="device_id" />
+          </form>
           <!-- the whole purpose of this form is to pass the device_id to the view to handel adding tickets to that device -->
           <form action="{% url 'customer_service_to_add_ticket' %}" method="post">
             <input type="number", hidden="true" value= {{ device.pk }} name="device_id">

@@ -5,7 +5,7 @@
 {% block content %}
 
   <form action = "{% url 'customer_service_add_device' %}" method = "post">
-    {{ form.as_table }}
+    {{ form }}
     <input type = "submit" value = "Add" />
     {% csrf_token %}
   </form>

@@ -22,4 +22,8 @@ urlpatterns = [
         name = "customer_service_to_add_ticket"),
     url(r'^add-ticket/$', customerservice_views.customer_service_add_ticket,\
         name = "customer_service_add_ticket"),
+    url(r'^edit-customer/$', customerservice_views.customer_service_edit_customer,\
+        name = "customer_service_edit_customer"),
+    url(r'^edit-device/$', customerservice_views.customer_service_edit_device,\
+        name = "customer_service_edit_device"),
 ]

@@ -201,3 +201,74 @@ def customer_service_add_ticket(request):
     else:
         response_redirect_url = reverse('customer_service_login')
         return HttpResponseRedirect(response_redirect_url)
+
+
+def customer_service_edit_customer(request):
+    customerservice_user_id = request.session.get('customerservice_user_id', None)
+    customer_service = request.session.get('customer_service', None)
+    if customerservice_user_id and customer_service:
+        if request.GET:
+            template = "customerservice/customerservice_edit_customer.html"
+            context = dict()
+            customer_id = int(request.GET['customer_id'])
+            request.session['customer_id'] = customer_id
+            customer = Customer.objects.get(pk = customer_id)
+            data = {
+                'first_name': customer.first_name,
+                'middle_name': customer.middle_name,
+                'last_name': customer.last_name,
+                'mobile_number': customer.mobile_number,
+                'land_phone_number': customer.land_phone_number,
+                'address_formated': customer.address_formated,
+                'longitude': customer.longitude,
+                'latitude': customer.latitude
+            }
+            customer_edit_form = customer_form.CustomerForm(initial = data)
+            context['form'] = customer_edit_form
+            return render(request, template, context)
+        elif request.POST:
+            edit_form = customer_form.CustomerForm(request.POST)
+            if edit_form.is_valid():
+                f_c_d = edit_form.cleaned_data
+                Customer.objects.filter(pk = request.session['customer_id']).update(**f_c_d)
+                del request.session['customer_id']
+                return HttpResponse("End the updating process")
+            else:
+                return HttpResponse("Form is not valid")
+
+    else:
+        response_redirect_url = reverse('customer_service_login')
+        return HttpResponseRedirect(response_redirect_url)
+
+
+def customer_service_edit_device(request):
+    customerservice_user_id = request.session.get('customerservice_user_id', None)
+    customer_service = request.session.get('customer_service', None)
+    if customerservice_user_id and customer_service:
+        if request.GET:
+            template = "customerservice/customerservice_edit_device.html"
+            context = dict()
+            device_id = int(request.GET['device_id'])
+            request.session['device_id'] = device_id
+            device = Device.objects.get(pk = device_id)
+            data = {
+                'model_name': device.model_name,
+                'serial_number': device.serial_number,
+                'purchase_date': device.purchase_date,
+                'last_maintenance_date': device.last_maintenance_date
+            }
+            edit_device_form = device_form.DeviceForm(initial = data)
+            context['form'] = edit_device_form
+            return render(request, template, context)
+        elif request.POST:
+            edit_form = device_form.DeviceForm(request.POST)
+            if edit_form.is_valid():
+                f_c_d = edit_form.cleaned_data
+                Device.objects.filter(pk = request.session['device_id']).update(**f_c_d)
+                del request.session['device_id']
+                return HttpResponse("End the updating device process")
+            else:
+                return HttpResponse("Form is not valid")
+    else:
+        response_redirect_url = reverse('customer_service_login')
+        return HttpResponseRedirect(response_redirect_url)
