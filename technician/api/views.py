@@ -196,6 +196,7 @@ def technician_add_ticket_solution(request, ticket_id):
             try:
                 ticket = Ticket.objects.get(pk = int(ticket_id))
                 ticket.status = 'CL'
+                ticket.device_concerned.last_maintenance_date = date.today()
                 ticket.save()
             except Ticket.DoesNotExist:
                 return Response(status=status.HTTP_404_NOT_FOUND)
